@@ -46,20 +46,6 @@ Mensagens Pré-preenchidas: A integração com a API do WhatsApp gera mensagens 
 
 O código foi estruturado pensando em escalabilidade. Dados como serviços, membros da equipe e convênios estão separados da camada de apresentação, facilitando a manutenção futura por qualquer desenvolvedor.
 
-📸 Estrutura do Código
-
-Exemplo de como a lógica de animação foi encapsulada para manter os componentes limpos:
-
-// Hook personalizado para revelar elementos ao rolar
-const Reveal = ({ children, delay = 0, direction = 'up' }) => {
-  // Lógica usando IntersectionObserver para alta performance...
-  return (
-    <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-      {children}
-    </div>
-  );
-};
-
 
 🔧 Como Rodar o Projeto Localmente
 
