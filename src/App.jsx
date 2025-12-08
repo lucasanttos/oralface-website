@@ -116,7 +116,7 @@ const AnimatedStat = ({ end, label, suffix = "" }) => {
 
 // Componente: Botão Premium
 const PremiumButton = ({ children, variant = 'primary', icon: Icon, onClick, className = "" }) => {
-  const baseStyle = "relative overflow-hidden px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 group";
+  const baseStyle = "relative overflow-hidden px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 group cursor-pointer";
   const variants = {
     primary: "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 ring-1 ring-blue-400/20",
     secondary: "bg-white text-blue-900 border border-slate-200 shadow-lg hover:shadow-xl hover:border-blue-200",
@@ -314,7 +314,7 @@ const teamMembers = [
     details: ["Consultas de Rotina", "Visita Domiciliar", "Doenças Agudas e Crônicas", "Prevenção em Saúde"],
     color: "text-teal-600",
     bg: "bg-teal-50",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1974&auto=format&fit=crop"
   },
   {
     name: "Dr. Caio Trindade",
@@ -407,6 +407,16 @@ export default function OralFaceWebsite() {
     return parts[0];
   };
 
+  // --- Função para abrir o WhatsApp da Clínica ---
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/5584996333183?text=${encodeURIComponent('Olá, gostaria de agendar uma consulta.')}`, '_blank');
+  };
+
+  // --- Função para abrir o WhatsApp com mensagem de Urgência ---
+  const openWhatsAppUrgency = () => {
+    window.open(`https://wa.me/5584996333183?text=${encodeURIComponent('Olá, estou com uma urgência e preciso de atendimento.')}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 overflow-x-hidden selection:bg-blue-200 selection:text-blue-900">
       
@@ -429,7 +439,7 @@ export default function OralFaceWebsite() {
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className={`flex items-center gap-2.5 cursor-pointer group transition-transform duration-500 origin-left ${scrolled ? 'scale-90' : 'scale-100'}`} onClick={() => scrollToSection('home')}>
             <div className="relative">
-              <div className="w-10 h-10 bg-blue-00 rounded-xl flex items-center justify-center text-white font-bold text-xl relative z-10 transition-transform group-hover:scale-110"><img src="/logo-fotor-20251207154553.png" alt="" /></div>
+              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl relative z-10 transition-transform group-hover:scale-110">O</div>
               <div className="absolute inset-0 bg-blue-400 blur-lg opacity-40 group-hover:opacity-70 transition-opacity"></div>
             </div>
             <div><h1 className="text-2xl font-bold text-slate-800 leading-none tracking-tight">OralFace</h1><p className="text-[10px] text-blue-600 font-bold tracking-[0.3em] uppercase">Premium Care</p></div>
@@ -442,7 +452,7 @@ export default function OralFaceWebsite() {
               </button>
             ))}
             <div className={`pl-4 transition-all duration-500 ${scrolled ? 'scale-90' : 'scale-100'}`}>
-              <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all transform hover:-translate-y-0.5 flex items-center gap-2 text-sm group"><Phone size={16} className="group-hover:rotate-12 transition-transform" /> Urgência</button>
+              <button onClick={openWhatsAppUrgency} className="bg-red-500 hover:bg-red-600 text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all transform hover:-translate-y-0.5 flex items-center gap-2 text-sm group"><Phone size={16} className="group-hover:rotate-12 transition-transform" /> Urgência</button>
             </div>
           </nav>
           <button className="md:hidden p-2 text-slate-800" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}><X /> : <Menu /></button>
@@ -451,7 +461,7 @@ export default function OralFaceWebsite() {
           <div className="flex flex-col p-6 space-y-4 font-medium text-slate-600">
             {navLinks.map((item) => <button key={item.label} onClick={() => scrollToSection(item.id)} className="text-left p-2 hover:bg-slate-50 rounded">{item.label}</button>)}
             <div className="p-2 border-t border-slate-100 mt-2"><p className="text-xs text-slate-400 font-bold uppercase mb-2">Convênios Aceitos</p><div className="flex flex-wrap gap-2">{insurances.map((item, index) => <span key={index} className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">{item.name}</span>)}</div></div>
-            <button className="bg-red-50 text-red-600 font-bold p-3 rounded-lg text-center border border-red-100">Ligar para Urgência</button>
+            <button onClick={() => window.location.href = 'tel:5584996333183'} className="bg-red-50 text-red-600 font-bold p-3 rounded-lg text-center border border-red-100">Ligar para Urgência</button>
           </div>
         </div>
       </header>
@@ -477,28 +487,18 @@ export default function OralFaceWebsite() {
               </Reveal>
               <Reveal direction="up" delay={700}>
                 <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                  <PremiumButton variant="primary" icon={ArrowRight}>Agendar Consulta</PremiumButton>
+                  <PremiumButton variant="primary" icon={ArrowRight} onClick={openWhatsApp}>Agendar Consulta</PremiumButton>
                   <PremiumButton variant="secondary" onClick={() => scrollToSection('services')}>Conhecer Serviços</PremiumButton>
                 </div>
               </Reveal>
             </div>
-            
             <Reveal direction="right" delay={400}>
               <div className="relative hidden lg:block perspective-1000">
                 <div className="relative z-20 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 p-2 rounded-3xl shadow-2xl transform transition-transform duration-200 ease-out hover:rotate-y-2 hover:rotate-x-2" style={{ transform: `rotateY(${mousePos.x * 0.5}deg) rotateX(${mousePos.y * -0.5}deg)` }}>
                   <div className="aspect-[4/3] bg-slate-800 rounded-2xl overflow-hidden relative">
                     <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-teal-600 opacity-20"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                        
-                        {/* --- FOTO DE DESTAQUE (HERO) --- 
-                            Substitua a URL abaixo pela imagem principal da clínica ou de uma modelo sorrindo.
-                        */}
-                        <img 
-                          src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" 
-                          alt="Profissional OralFace" 
-                          className="w-full h-full object-cover"
-                        />
-
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" alt="Profissional OralFace" className="w-full h-full object-cover" />
                     </div>
                   </div>
                 </div>
@@ -609,18 +609,9 @@ export default function OralFaceWebsite() {
                 <div className="bg-slate-200 rounded-[3rem] h-[500px] w-full relative overflow-hidden shadow-2xl z-10 group">
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent z-10"></div>
                   <div className="absolute bottom-8 left-8 z-20 text-white"><p className="font-bold text-xl">Estrutura Moderna</p><p className="text-slate-200 text-sm">Equipamentos de Tomografia 3D</p></div>
-                  
                   <div className="w-full h-full bg-slate-300 flex items-center justify-center text-slate-500 group-hover:scale-105 transition-transform duration-700">
-                    {/* --- FOTO DA ESTRUTURA (SOBRE NÓS) --- 
-                        Substitua a URL abaixo pela foto da fachada ou da recepção da clínica.
-                    */}
-                    <img 
-                      src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop" 
-                      alt="Estrutura da Clínica OralFace" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop" alt="Estrutura da Clínica OralFace" className="w-full h-full object-cover" />
                   </div>
-
                 </div>
               </div>
             </Reveal>
@@ -633,7 +624,7 @@ export default function OralFaceWebsite() {
                     <div key={i} className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors shadow-sm"><div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={20} /></div><span className="font-medium text-slate-700">{item}</span></div>
                   ))}
                 </div>
-                <div className="pt-4"><PremiumButton variant="primary">Agendar Visita Técnica</PremiumButton></div>
+                <div className="pt-4"><PremiumButton variant="primary" onClick={openWhatsApp}>Agendar Visita Técnica</PremiumButton></div>
               </div>
             </Reveal>
           </div>
