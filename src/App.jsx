@@ -314,7 +314,7 @@ const teamMembers = [
     details: ["Consultas de Rotina", "Visita Domiciliar", "Doenças Agudas e Crônicas", "Prevenção em Saúde"],
     color: "text-teal-600",
     bg: "bg-teal-50",
-    image: "public/dr.jpeg"
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop"
   },
   {
     name: "Dr. Caio Trindade",
@@ -429,7 +429,7 @@ export default function OralFaceWebsite() {
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className={`flex items-center gap-2.5 cursor-pointer group transition-transform duration-500 origin-left ${scrolled ? 'scale-90' : 'scale-100'}`} onClick={() => scrollToSection('home')}>
             <div className="relative">
-              <div className="w-10 h-10 bg-blue-00 rounded-xl flex items-center justify-center text-white font-bold text-xl relative z-10 transition-transform group-hover:scale-110"><img src="public/logo-fotor-20251207154553.png" alt="" /></div>
+              <div className="w-10 h-10 bg-blue-00 rounded-xl flex items-center justify-center text-white font-bold text-xl relative z-10 transition-transform group-hover:scale-110"><img src="/logo-fotor-20251207154553.png" alt="" /></div>
               <div className="absolute inset-0 bg-blue-400 blur-lg opacity-40 group-hover:opacity-70 transition-opacity"></div>
             </div>
             <div><h1 className="text-2xl font-bold text-slate-800 leading-none tracking-tight">OralFace</h1><p className="text-[10px] text-blue-600 font-bold tracking-[0.3em] uppercase">Premium Care</p></div>
